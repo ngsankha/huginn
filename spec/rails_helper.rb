@@ -74,3 +74,8 @@ end
 if ENV['RSPEC_TASK'] != 'spec:nofeatures'
   require 'capybara_helper'
 end
+
+if ENV["TYPECHECK"]
+  puts "Run type checker here..."
+  require_relative '../typecheck.rb'
+end

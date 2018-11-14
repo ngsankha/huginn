@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   def deactivate!
     User.transaction do
       agents.update_all(deactivated: true)
-      update_attribute(:deactivated_at, Time.now)
+      update_attribute(:deactivated_at, RDL.type_cast(Time.now, 'DateTime', force: true))
     end
   end
 

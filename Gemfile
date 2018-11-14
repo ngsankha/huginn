@@ -29,6 +29,10 @@ def if_true(condition)
   end
 end
 
+gem 'rdl', path: '../rdl'
+gem 'sql-parser'
+gem 'ruby-prof'
+
 # Optional libraries.  To conserve RAM, comment out any that you don't need,
 # then run `bundle` and commit the updated Gemfile and Gemfile.lock.
 gem 'twilio-ruby', '~> 3.11.5'    # TwilioAgent
