@@ -1,4 +1,4 @@
-require '/Users/sankha/projects/db-types/active-record/db_types.rb'
+require_relative '../db-types/active-record/db_types.rb'
 require 'types/core'
 # require 'types/rails/object'
 puts '--------------------------------------------------------'
