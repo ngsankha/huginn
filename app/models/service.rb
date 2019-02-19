@@ -39,10 +39,10 @@ class Service < ActiveRecord::Base
                   client_secret: oauth_secret,
                   refresh_token: refresh_token
     })
-    data = RDL.type_cast(JSON.parse(response.body), '{ expires_in: Numeric, access_token: String, refresh_token: String }', force: true)
-    update(expires_at: RDL.type_cast(Time.now + RDL.type_cast(data[:expires_in], 'Integer', force: true), 'DateTime', force: true),
-           token: RDL.type_cast(data[:access_token], 'String', force: true),
-           refresh_token: RDL.type_cast(data[:refresh_token], 'String', force: true).presence || refresh_token)
+    data = RDL.type_cast(JSON.parse(response.body, symbolize_names: true), '{ expires_in: Integer, access_token: String, refresh_token: String }', force: true)
+    update(expires_at: Time.now + data[:expires_in],
+           token: data[:access_token],
+           refresh_token: data[:refresh_token].presence || refresh_token)
   end
 
   def endpoint

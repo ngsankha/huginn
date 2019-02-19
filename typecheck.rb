@@ -90,7 +90,7 @@ MODELS.each { |model|
 
 # stdlib
 RDL.type Object, :presence, '() -> self', wrap: false
-RDL.type JSON, 'self.parse', '(String) -> %bot', typecheck: :never, wrap: false # not checked
+RDL.type JSON, 'self.parse', '(String, {symbolize_names: %bool}) -> %bot', typecheck: :never, wrap: false # not checked
 RDL.type DateTime, :>, '(Time or DateTime) -> %bool'
 RDL.type Time, :>, '(Time or DateTime) -> %bool'
 # we could definitely write better type rules for the next one. Hash<Symbol, %any> doesn't work
@@ -107,8 +107,8 @@ RDL.type HTTParty::Response, :body, '() -> String', typecheck: :never, wrap: fal
 
 # works
 RDL.type User, :active?, '() -> %bool', typecheck: :later, wrap: false
-RDL.type User, :activate!, '() -> User', typecheck: :later, wrap: false
-RDL.type User, :deactivate!, '() -> User', typecheck: :later, wrap: false
+RDL.type User, :activate!, '() -> %bool', typecheck: :later, wrap: false
+RDL.type User, :deactivate!, '() -> %bool', typecheck: :later, wrap: false
 
 RDL.type Service, :disable_agents, '(?({where_not: { user_id: Integer } } or {})) -> Array<Agent>', typecheck: :later, wrap: false # this isn't typechecked because of error
 RDL.type Service, :toggle_availability!, '() -> %bool', typecheck: :later, wrap: false
@@ -121,13 +121,13 @@ RDL.type Service, :refresh_token!, '() -> %bool', typecheck: :later, wrap: false
 # RDL.type Scenario, :destroy_with_mode, '(all_agents or unique_agents) -> nil', typecheck: :later, wrap: false
 
 ## typecheck
-RubyProf.start
+# RubyProf.start
 start = Time.now
 RDL.do_typecheck :later
 finish = Time.now
-result = RubyProf.stop
+# result = RubyProf.stop
 puts(finish - start)
 
-printer = RubyProf::CallStackPrinter.new(result)
-outfile = File.open("profile.html", "w")
-printer.print(outfile, :profile => "profile", :min_percent => 1)
+# printer = RubyProf::CallStackPrinter.new(result)
+# outfile = File.open("profile.html", "w")
+# printer.print(outfile, :profile => "profile", :min_percent => 1)
