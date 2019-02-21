@@ -47,11 +47,13 @@ class ActiveRecord::Base
   type :initialize, '() -> self', wrap: false
   type :save!, '(?({ validate: %bool })) -> %bool', wrap: false
   type :update!, '(Hash<Symbol, x>) -> %bool', wrap: false
+  type :update, '(Hash<Symbol, x>) -> %bool', wrap: false
   type 'self.create', '(Hash<Symbol, x>) -> self', wrap: false
   type 'self.with_deleted', '() -> ActiveRecord_Relation<self>', wrap: false
 #   type :includes, "(Symbol) -> ActiveRecord_Relation<self>", wrap: false
   type 'self.includes', "(Symbol, *%any) -> ActiveRecord_Relation<self>", wrap: false
   type 'self.transaction', '() {() -> t } -> t', wrap: false
+  type :update_attribute, '(Symbol, %any) -> %bool', wrap: false
 #   type :includes, "(Symbol, *Symbol or Hash<Symbol, Symbol> ) -> ActiveRecord_Relation<self>", wrap: false
 end
 

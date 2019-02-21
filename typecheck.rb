@@ -1,8 +1,5 @@
-require_relative '../db-types/active-record/db_types.rb'
+require './db_types.rb'
 require 'types/core'
-
-## file required below builds the schema model used during type checking
-require_relative './build_schema.rb'
 
 puts "Type checking methods from Huginn..."
 
@@ -26,7 +23,18 @@ RDL.type HTTParty::Response, :body, '() -> String'
 RDL.type Service, :endpoint, '() -> URI::HTTP'
 RDL.type Service, :oauth_key, '() -> String'
 RDL.type Service, :oauth_secret, '() -> String'
+RDL.type User, :deactivated_at, '() -> DateTime'
+RDL.type User, :agents, '() -> ActiveRecord_Relation<Agent>'
+RDL.type Service, :agents, '() -> ActiveRecord_Relation<Agent>'
+RDL.type Agent, :service_id=, '(Integer) -> nil'
+RDL.type Agent, :disabled=, '(%bool) -> nil'
+RDL.type Service, :global, '() -> %bool'
+RDL.type Service, :global=, '(%bool) -> nil'
+RDL.type Service, :user_id, '() -> Integer'
+RDL.type Service, :refresh_token, '() -> String'
+RDL.type Service, :expires_at, '() -> DateTime'
 
 ## Call to `do_typecheck` will type check all the methods above with the :later label.
 ## The second argument is optional and is used for printing configurations.
+RDL::Config.instance.use_dep_types = false
 RDL.do_typecheck :later, (ENV["NODYNCHECK"] || ENV["TYPECHECK"])
