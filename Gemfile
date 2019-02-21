@@ -29,7 +29,7 @@ def if_true(condition)
   end
 end
 
-gem 'rdl', path: '../rdl'
+gem 'rdl', git: 'https://github.com/plum-umd/rdl.git', branch: 'pldi-comp-types'
 gem 'sql-parser'
 gem 'ruby-prof'
 

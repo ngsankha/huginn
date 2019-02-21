@@ -79,6 +79,15 @@ GIT
       faraday (>= 0.7.4, < 1.0)
 
 GIT
+  remote: https://github.com/plum-umd/rdl.git
+  revision: 54e7d8842e36c8b6799591bc1ba454eb9d60987b
+  branch: pldi-comp-types
+  specs:
+    rdl (2.1.0)
+      colorize
+      parser (~> 2.3, >= 2.3.1.4)
+
+GIT
   remote: https://github.com/sferik/twitter.git
   revision: d11707edf4abd13f7ada0eef57fc1eaa1062d75b
   specs:
@@ -93,12 +102,6 @@ GIT
       multipart-post (~> 2.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-
-PATH
-  remote: ../rdl
-  specs:
-    rdl (2.1.0)
-      parser (~> 2.3, >= 2.3.1.4)
 
 PATH
   remote: vendor/gems/dotenv-2.0.1
@@ -446,7 +449,7 @@ GEM
       omniauth-oauth2 (~> 1.1)
     orm_adapter (0.5.0)
     os (0.9.6)
-    parser (2.5.3.0)
+    parser (2.6.0.0)
       ast (~> 2.4.0)
     pg (0.18.3)
     poltergeist (1.8.1)
