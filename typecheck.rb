@@ -14,12 +14,12 @@ RDL.type Service, :prepare_request, '() -> %bool or nil', typecheck: :later, wra
 
 ### Annotations for variables and non-checked methods. These methods either come from the Huginn app or from external libraries.
 RDL.type Object, :presence, '() -> self'
-RDL.type JSON, 'self.parse', '(String, {symbolize_names: %bool}) -> %bot'
+RDL.type JSON, 'self.parse', '(String, ?{symbolize_names: %bool}) -> Hash<k, v>'
 RDL.type DateTime, :>, '(Time or DateTime) -> %bool'
 RDL.type Time, :>, '(Time or DateTime) -> %bool'
 RDL.type HTTParty, 'self.post', '(URI::HTTP, Hash<Symbol, Hash<Symbol, String>>) -> HTTParty::Response'
 RDL.type HTTParty, 'self.post', '(URI::HTTP, Hash<Symbol, %any>) { () -> %any } -> HTTParty::Response'
-RDL.type HTTParty::Response, :body, '() -> String'
+RDL.type HTTParty::Response, :body, '() -> String', wrap: false
 RDL.type Service, :endpoint, '() -> URI::HTTP'
 RDL.type Service, :oauth_key, '() -> String'
 RDL.type Service, :oauth_secret, '() -> String'
