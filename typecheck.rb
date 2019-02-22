@@ -7,9 +7,11 @@ require_relative './build_schema.rb'
 puts "Type checking methods from Huginn..."
 
 ### Annotations for type checked methods.
+## Methods located in ~/huginn/app/models/user.rb
 RDL.type User, :active?, '() -> %bool', typecheck: :later, wrap: false
 RDL.type User, :activate!, '() -> %bool', typecheck: :later, wrap: false
 RDL.type User, :deactivate!, '() -> %bool', typecheck: :later, wrap: false
+## Methods located in ~/huginn/app/models/service.rb
 RDL.type Service, :disable_agents, '(?({where_not: { user_id: Integer } } or {})) -> Array<Agent>', typecheck: :later, wrap: false
 RDL.type Service, :toggle_availability!, '() -> %bool', typecheck: :later, wrap: false
 RDL.type Service, :refresh_token!, '() -> %bool', typecheck: :later, wrap: false
